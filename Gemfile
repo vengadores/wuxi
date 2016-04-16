@@ -41,6 +41,10 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+group :test do
+  gem 'rspec_junit_formatter'
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
