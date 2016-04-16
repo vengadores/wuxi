@@ -1,4 +1,4 @@
 ## dependencies
 
 - mongodb
-- ruby 2+
+- ruby 2.1.4
