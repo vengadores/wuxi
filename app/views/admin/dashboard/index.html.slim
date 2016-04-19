@@ -3,5 +3,7 @@
     a.ui.logo.icon.image> href="/"
       img src="http://semantic-ui.com/images/logo.png" style=("width: 35px;") /
     a> href="/" Vengadores
-  a.item> href='#' Caca
-  a.item> href='#' Cerrar sesión
+  a.item href='#' Caca
+  = link_to "Cerrar Sesión",
+            destroy_user_session_path,
+            class: "item"
