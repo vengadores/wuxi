@@ -54,3 +54,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+group :staging do
+  gem 'rails_12factor'
+  gem 'rails_stdout_logging', '~> 0.0.5'
+end
