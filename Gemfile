@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'mongoid', '~> 5.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -32,9 +31,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'slim-rails'
+gem 'devise'
+gem 'omniauth-twitter'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.4'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
@@ -45,3 +55,7 @@ group :development do
   gem 'spring'
 end
 
+group :staging do
+  gem 'rails_12factor'
+  gem 'rails_stdout_logging', '~> 0.0.5'
+end
