@@ -61,6 +61,8 @@ Rails.application.routes.draw do
   #   resources :photos, concerns: :toggleable
 
   namespace :admin do
+    resources :accounts,
+              only: [ :new, :create, :index ]
     root "dashboard#index"
   end
 end
