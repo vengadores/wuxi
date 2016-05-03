@@ -16,13 +16,19 @@ module Admin
 
     def create
       account = Core::Account.new(account_params)
-      account.save!
-      redirect_to action: :index
+      if account.save
+        redirect_to action: :index
+      else
+        render :new
+      end
     end
 
     def update
-      @account.update(account_params)
-      redirect_to action: :index
+      if @account.update(account_params)
+        redirect_to action: :index
+      else
+        render :edit
+      end
     end
 
     private

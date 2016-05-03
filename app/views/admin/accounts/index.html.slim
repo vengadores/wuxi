@@ -12,7 +12,7 @@
         table.ui.single.line.table
           thead
             tr
-              th Name
+              th Nombre
               th
           tbody
             = content_tag_for :tr, @accounts do |account|
@@ -22,5 +22,7 @@
 
     .ui.grid
       .eight.wide.column
-        button.fluid.ui.teal.button Add Account
+        = link_to "Agregar cuenta",
+                  new_admin_account_path,
+                  class: "fluid ui teal button"
 

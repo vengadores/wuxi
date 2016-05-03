@@ -1,0 +1,8 @@
+es:
+  mongoid:
+    attributes:
+      core/account:
+        name: Nombre
+    errors:
+      messages:
+        taken: ya está tomado

@@ -5,7 +5,7 @@
   a.item href='#' Caca
   = link_to "Cuentas",
             admin_accounts_path,
-            class: "item"
+            class: "item #{'active' if controller_name == 'accounts'}"
   = link_to "Cerrar Sesión",
             destroy_user_session_path,
             class: "item"
