@@ -53,4 +53,20 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include FactoryGirl::Syntax::Methods
+  config.include Warden::Test::Helpers, type: :feature
+
+  config.before :suite do
+    Warden.test_mode!
+  end
+
+  config.before(:suite) do
+    # DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end

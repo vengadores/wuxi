@@ -10,7 +10,8 @@ module Admin
       private
 
       def new_session_path(scope)
-        new_user_session_path
+        # ATM all admins
+        admin_root_path
       end
     end
   end

@@ -46,6 +46,8 @@ end
 
 group :test do
   gem 'rspec_junit_formatter'
+  gem 'launchy'
+  gem 'database_cleaner'
 end
 
 group :development do
