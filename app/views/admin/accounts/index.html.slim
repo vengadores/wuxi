@@ -1,2 +1,4 @@
-- @accounts.each do |account|
-    = account.name
+= div_for @accounts do |account|
+  = account.name
+  = link_to "editar",
+            edit_admin_account_path(account)
