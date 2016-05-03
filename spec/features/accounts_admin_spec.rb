@@ -9,7 +9,6 @@ RSpec.describe "accounts administration",
     before {
       login_as admin
       visit new_admin_account_path
-      save_and_open_page
       fill_in "Name", with: name
       click_button "Submit"
     }
