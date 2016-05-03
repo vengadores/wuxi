@@ -15,8 +15,8 @@ module Admin
     end
 
     def create
-      account = Core::Account.new(account_params)
-      if account.save
+      @account = Core::Account.new(account_params)
+      if @account.save
         redirect_to action: :index
       else
         render :new
