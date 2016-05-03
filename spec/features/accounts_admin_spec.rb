@@ -9,8 +9,8 @@ RSpec.describe "accounts administration",
     before {
       login_as admin
       visit new_admin_account_path
-      fill_in "Name", with: name
-      click_button "Submit"
+      fill_in I18n.t("mongoid.attributes.core/account.name"), with: name
+      click_button I18n.t("actions.submit")
     }
     subject { Core::Account.last.name }
     it { is_expected.to eq(name) }
@@ -36,8 +36,8 @@ RSpec.describe "accounts administration",
       within "#account_#{account.id}" do
         click_on "editar"
       end
-      fill_in "Name", with: new_name
-      click_button "Submit"
+      fill_in I18n.t("mongoid.attributes.core/account.name"), with: new_name
+      click_button I18n.t("actions.submit")
     }
     subject { account.reload.name }
     it { is_expected.to eq(new_name) }

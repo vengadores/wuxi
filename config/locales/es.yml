@@ -1,4 +1,6 @@
 es:
+  actions:
+    submit: Enviar
   mongoid:
     attributes:
       core/account:
