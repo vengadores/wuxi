@@ -1,4 +1,28 @@
-= div_for @accounts do |account|
-  = account.name
-  = link_to "editar",
-            edit_admin_account_path(account)
+.ui.grid
+  .four.wide.column
+
+  .eight.wide.column
+    .ui.grid
+      .eight.wide.column
+        .ui.center.aligned.container
+          h1 Cuentas
+
+    .ui.grid
+      .eight.wide.column
+        table.ui.single.line.table
+          thead
+            tr
+              th Nombre
+              th
+          tbody
+            = content_tag_for :tr, @accounts do |account|
+              td = account.name
+              td = link_to "editar",
+                        edit_admin_account_path(account)
+
+    .ui.grid
+      .eight.wide.column
+        = link_to "Agregar cuenta",
+                  new_admin_account_path,
+                  class: "fluid ui teal button"
+

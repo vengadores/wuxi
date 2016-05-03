@@ -1,6 +1,18 @@
-= form_for([:admin, @account]) do |f|
-  .field
+= form_for [:admin, @account],
+           html: { class: "ui form #{'error' if @account.errors.any?}" } do |f|
+
+  - if f.object.errors.any?
+    .ui.error.message
+      .header Ups!
+      - f.object.errors.full_messages.each do |message|
+        p = message
+
+  .field.four.wide
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, required: true
   .actions
-    = f.submit "Submit"
+    = f.submit t("actions.submit"),
+               class: "ui button green"
+    = link_to "Cancelar",
+              admin_accounts_path,
+              class: "ui button red cancel-button"

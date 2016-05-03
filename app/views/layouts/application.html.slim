@@ -11,6 +11,10 @@ html
                              'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body
-    = render "shared/flashes"
-    = yield
+  body.ui
+    = render "shared/sidebar"
+
+    .pusher
+      .ui.basic.segment
+        = render "shared/flashes"
+        = yield

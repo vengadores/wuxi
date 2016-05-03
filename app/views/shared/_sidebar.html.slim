@@ -1,0 +1,11 @@
+.ui.visible.inverted.left.vertical.sidebar.menu.segment
+  a.ui.logo.icon.image> href="/"
+    img src="http://semantic-ui.com/images/logo.png" style=("width: 35px;") /
+  a> href="/" Vengadores
+  a.item href='#' Caca
+  = link_to "Cuentas",
+            admin_accounts_path,
+            class: "item #{'active' if controller_name == 'accounts'}"
+  = link_to "Cerrar Sesión",
+            destroy_user_session_path,
+            class: "item"

@@ -1,0 +1,10 @@
+es:
+  actions:
+    submit: Enviar
+  mongoid:
+    attributes:
+      core/account:
+        name: Nombre
+    errors:
+      messages:
+        taken: ya está tomado
