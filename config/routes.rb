@@ -20,7 +20,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :accounts,
-              only: [ :new, :edit, :create, :index, :update, :show ]
+              only: [ :new, :show, :edit, :create, :index, :update ] do
+      resources :external_providers,
+                only: [:new] do
+        collection do
+          get :authorize, as: :authorize
+        end
+      end
+    end
     root "dashboard#index"
   end
 end

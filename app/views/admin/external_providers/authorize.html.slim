@@ -1,0 +1,10 @@
+h1 Hubo un problema autorizando tu cuenta
+
+.ui.red.segment
+  ul
+    - @errors.each do |error|
+      li = error
+
+= link_to "Atrás",
+          edit_admin_account_path(@account),
+          class: "ui button"

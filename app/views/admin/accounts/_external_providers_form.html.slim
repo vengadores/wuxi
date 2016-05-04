@@ -1,0 +1,15 @@
+- if f.object.new_record?
+  p Guarda este registro para agregar proveedores externos
+
+- else
+  = label_tag "Proveedores externos"
+  = f.fields_for :external_providers do |external_provider_form|
+    = render "admin/external_providers/form",
+             f: external_provider_form
+
+  - Core::ExternalProvider::PROVIDERS.each do |provider|
+    - authorization_path = new_admin_account_external_provider_path(@account, provider: provider)
+    = link_to authorization_path,
+              class: "ui button tiny" do
+      i.icon class="#{provider}"
+      ' autorizar nuevo
