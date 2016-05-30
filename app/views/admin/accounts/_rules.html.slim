@@ -1,0 +1,21 @@
+.fields.rule-fields
+  .field.four.wide.rule_kind_select_wrapper
+    = f.label :Tipo
+    = f.select  :kind,
+                f.object.class::KINDS,
+                class: "ui fluid dropdown"
+  .field.four.wide
+    = f.label :Contenido
+    = f.text_field :content
+    
+  .field.four.wide
+    = f.label :permitir
+    br
+    = f.check_box :allowed
+  
+  .field.four.wide.rule_can_mention_wrapper.transition class="#{'hidden' unless f.object.is_searchterm?}"
+    = f.label :can_mention, "Puede ser mención"
+    br
+    = f.check_box :can_mention
+  
+  = f.link_to_remove "Eliminar"

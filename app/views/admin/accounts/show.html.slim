@@ -1,0 +1,9 @@
+h4
+  ' Cuenta
+  = @account.name
+  = @account.rules.each do |p|
+    =p.kind
+    =p.content
+    =p.allowed
+
+  

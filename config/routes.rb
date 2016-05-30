@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :accounts,
-              only: [ :new, :edit, :create, :index, :update ]
+              only: [ :new, :edit, :create, :index, :update, :show ]
     root "dashboard#index"
   end
 end

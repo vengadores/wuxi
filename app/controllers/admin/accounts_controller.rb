@@ -1,7 +1,7 @@
 module Admin
   class AccountsController < ApplicationController
     before_action :authenticate_user!
-    before_action :find_account, only: [:edit, :update]
+    before_action :find_account, only: [:edit, :update, :show]
 
     def index
       @accounts = Core::Account.all
@@ -12,6 +12,9 @@ module Admin
     end
 
     def edit
+    end
+
+    def show
     end
 
     def create
@@ -39,7 +42,10 @@ module Admin
 
     def account_params
       params.require(:account)
-            .permit(:name)
+            .permit(
+              :name,
+              rules_attributes: [:id, :kind, :content, :allowed, :_destroy]
+            )
     end
   end
 end
