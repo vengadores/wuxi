@@ -1,0 +1,8 @@
+.fields
+  = link_to f.object.external_uri,
+            target: "_blank" do
+    = f.object.nickname
+    i.icon class="#{f.object.provider}"
+  = f.link_to_remove class: "ui-popup",
+                     data: { content: "eliminar" } do
+    i.fitted.remove.red.icon

@@ -1,0 +1,29 @@
+h1
+  ' Agregando cuenta de
+  = provider.name
+
+p
+  ' Estás a punto de autorizar una nueva cuenta de
+  = link_to provider.name, provider.link, target: "_blank"
+  ' . Antes de pedir autorización al proveedor, sigue estos pasos:
+
+ol
+  li
+    ' Asegúrate de haber iniciado sesión en
+    => link_to provider.name, provider.link, target: "_blank"
+    ' con la cuenta que estás a punto de autorizar
+  li
+    ' Si tu sesión de
+    => link_to provider.name, provider.link, target: "_blank"
+    ' no es la que deseas autorizar, por favor cierra sesión antes de continuar (Deberás iniciar sesión nuevamente con la cuenta que deseas autorizar)
+
+p Luego de haber verificado que estás autorizando la cuenta correcta:
+
+= link_to omniauth_authorize_path(:user, provider.name),
+          class: "ui button green" do
+  i.icon class="#{provider.name}"
+  ' autorizar
+
+= link_to "Cancelar",
+          edit_admin_account_path(@account),
+          class: "ui button red"

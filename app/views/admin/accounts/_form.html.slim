@@ -1,5 +1,5 @@
 = nested_form_for [:admin, @account],
-           html: { class: "ui form #{'error' if @account.errors.any?}" } do |f|
+                  html: { class: "ui form #{'error' if @account.errors.any?}" } do |f|
 
   - if f.object.errors.any?
     .ui.error.message
@@ -10,10 +10,14 @@
   .field.four.wide
     = f.label :name
     = f.text_field :name, required: true
-    .field.four.wide
-      = f.fields_for :rules do |builder|
-        = render 'rules', f: builder
+
+  .field.four.wide
+    = f.fields_for :rules do |builder|
+      = render 'rules', f: builder
     = f.link_to_add "Añadir Regla", :rules
+
+  .field.four.wide
+    = render "external_providers_form", f: f
 
   .actions
     = f.submit t("actions.submit"),
@@ -21,4 +25,3 @@
     = link_to "Cancelar",
               admin_accounts_path,
               class: "ui button red cancel-button"
-  
