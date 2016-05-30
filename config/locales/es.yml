@@ -1,6 +1,6 @@
 es:
   actions:
-    submit: Enviar
+    submit: Guardar
   mongoid:
     attributes:
       core/account:
