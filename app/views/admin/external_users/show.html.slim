@@ -18,18 +18,21 @@
           .right.floated.author
             = image_tag @external_user.image,
                         class: "ui avatar image"
+        .extra.content
+          = render "status_form"
 
     .ui.feed
       h4.ui.header Activity
 
-      - @external_user.activity.each do |activity|
+      - @external_user.activity.decorate.each do |activity|
         .event
           .label
-            = image_tag "/images/rails.png"
+            = image_tag activity.whodunit_user_image
           .content
             .date
               = l activity.created_at, format: :wuxi_admin
             .summary
+              => activity.whodunit_user_name
               = t ".activity_action.#{activity.action}"
             .extra.text
               => t ".activity_predicate.#{activity.action}"

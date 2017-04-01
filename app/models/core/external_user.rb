@@ -8,6 +8,7 @@ module Core
     field :provider, type: String
     field :raw_hash, type: Hash
     field :status, type: String
+    field :notes, type: String
 
     index({ provider: 1, uid: 1 }, { unique: true })
     index({ status: 1 })

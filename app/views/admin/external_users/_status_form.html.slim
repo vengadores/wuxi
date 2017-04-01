@@ -1,0 +1,10 @@
+= form_tag update_status_admin_external_user_path(@external_user) do
+  .ui.input.fluid.transparent.left.icon
+    i.tags.icon
+    = text_field_tag :notes,
+                     @external_user.notes,
+                     placeholder: "add some notes"
+
+  .ui.two.buttons
+    = render "status_updater", status: :whitelist, color: :green
+    = render "status_updater", status: :blacklist, color: :red

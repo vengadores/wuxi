@@ -8,6 +8,7 @@ module Core
     field :subject_type, type: String
     field :action, type: String
     field :predicate, type: Hash
+    field :whodunit_id, type: BSON::ObjectId
 
     index({ action: 1 })
     index({ subject_id: 1, subject_type: 1 })
@@ -18,7 +19,12 @@ module Core
               presence: true
 
     enumerize :action,
-              in: [ :blacklist_user_banned_word_usage ]
+              in: [
+                :external_user_status_update,
+                :blacklist_user_banned_word_usage
+              ]
+
+    scope :latest, -> { order(created_at: :desc) }
 
     def subject=(new_subject)
       self.subject_id = new_subject.id

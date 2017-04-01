@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :banned_words
-    resources :external_users
+    resources :external_users do
+      member do
+        post :update_status
+      end
+    end
     resources :accounts,
               only: [ :new, :show, :edit, :create, :index, :update ] do
       resources :external_providers,

@@ -13,9 +13,11 @@ es:
     external_users:
       show:
         activity_action:
-          blacklist_user_banned_word_usage: marked as blacklist
+          blacklist_user_banned_word_usage: marcó este usuario como blacklist
+          external_user_status_update: actualizó el estado de este usuario
         activity_predicate:
           blacklist_user_banned_word_usage: because of banned words usage
+          external_user_status_update: "detalles:"
 
   date:
     month_names:

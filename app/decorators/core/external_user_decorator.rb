@@ -24,7 +24,7 @@ module Core
       Core::Activity.where(
         subject_id: object.id,
         subject_type: object.class.name
-      )
+      ).latest
     end
   end
 end
