@@ -25,7 +25,7 @@ module Speaker
     private
 
     def retweet!
-      puts twitter_client.retweet!(
+      twitter_client.retweet!(
         Twitter::Tweet.new(
           @external_post.raw_hash.with_indifferent_access
         )

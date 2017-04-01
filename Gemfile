@@ -42,6 +42,7 @@ gem "enumerize"
 gem "kaminari-mongoid"
 gem "kaminari-actionview"
 gem "sidekiq"
+gem "redis-namespace"
 gem "httparty"
 
 group :development, :test do
