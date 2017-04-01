@@ -11,6 +11,8 @@
           .header = @external_user.nickname
           .meta = @external_user.name
           .description
+            = pluralize @external_user.posts.count, "post"
+          .description
             = link_to "open twitter profile",
                       "https://twitter.com/#{@external_user.screen_name}",
                       target: "_blank"

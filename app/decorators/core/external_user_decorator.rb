@@ -17,7 +17,7 @@ module Core
     end
 
     def nickname_with_link
-      h.link_to nickname, "https://twitter.com/#{screen_name}", target: "_blank"
+      h.link_to nickname, h.admin_external_user_path(object)
     end
 
     def activity

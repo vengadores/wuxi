@@ -14,6 +14,7 @@ module Admin
     end
 
     def show
+      @posts_status = params[:posts_status] || 'new'
       @external_providers = @account.external_providers.decorate
     end
 

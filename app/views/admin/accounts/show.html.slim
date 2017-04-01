@@ -15,22 +15,19 @@ div
   ' searchterm:
   = @account.searchterm
 
-- @external_providers.each do |external_provider|
-  div
-    ' provider:
-    = external_provider
-    ' .
-    = external_provider.active? ? 'activo' : 'inactivo'
+.ui.secondary.menu
+  - Core::ExternalPost.status.values.each do |status|
+    = link_to status,
+              admin_account_path(@account, posts_status: status),
+              class: "item #{'active' if @posts_status == status}"
 
-  - external_provider.latest_posts.each do |external_post|
-    .external-post-in-list
-      .external-user-img
-        = image_tag external_post.external_user.image
-      div
-        => external_post.external_user.nickname_with_link
-        => external_post.external_user.name
-        ' -
-        = external_post.external_link do
-          = external_post.external_created_at
-      div = external_post.to_s
-      .clear
+- @external_providers.each do |external_provider|
+  .ui.feed
+    h4.ui.header
+      ' provider:
+      = external_provider
+      ' .
+      = external_provider.active? ? 'activo' : 'inactivo'
+
+    - external_provider.latest_posts(@posts_status).each do |external_post|
+      = render external_post
