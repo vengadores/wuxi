@@ -1,11 +1,7 @@
 = nested_form_for [:admin, @account],
                   html: { class: "ui form #{'error' if @account.errors.any?}" } do |f|
 
-  - if f.object.errors.any?
-    .ui.error.message
-      .header Ups!
-      - f.object.errors.full_messages.each do |message|
-        p = message
+  = render "shared/form_errors", f: f
 
   .field.four.wide
     = f.label :name

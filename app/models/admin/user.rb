@@ -1,5 +1,6 @@
 class Admin::User
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   devise :trackable,
          :omniauthable, omniauth_providers: [:twitter]

@@ -1,0 +1,5 @@
+.ui.item.menu
+  - Core::ExternalUser.status.values.each do |status|
+    = link_to status,
+              admin_external_users_path(status: status),
+              class: "item #{'active' if @status == status}"

@@ -6,6 +6,12 @@
   = link_to "Cuentas",
             admin_accounts_path,
             class: "item #{'active' if controller_name == 'accounts'}"
+  = link_to "Banned words",
+            admin_banned_words_path,
+            class: "item #{'active' if controller_name == 'banned_words'}"
+  = link_to "External users",
+            admin_external_users_path,
+            class: "item #{'active' if controller_name == 'external_users'}"
   = link_to "Cerrar Sesión",
             destroy_user_session_path,
             class: "item"

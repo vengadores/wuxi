@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :admin do
+    resources :banned_words
+    resources :external_users
     resources :accounts,
               only: [ :new, :show, :edit, :create, :index, :update ] do
       resources :external_providers,

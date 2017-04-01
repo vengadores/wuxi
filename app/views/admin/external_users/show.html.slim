@@ -1,0 +1,36 @@
+.ui.grid
+  .ui.center.aligned.container
+    h1 External User
+
+  .eight.wide.column
+    = render "by_status_menu"
+
+    .ui.cards
+      .card
+        .content
+          .header = @external_user.nickname
+          .meta = @external_user.name
+          .description
+            = link_to "open twitter profile",
+                      "https://twitter.com/#{@external_user.screen_name}",
+                      target: "_blank"
+        .extra.content
+          .right.floated.author
+            = image_tag @external_user.image,
+                        class: "ui avatar image"
+
+    .ui.feed
+      h4.ui.header Activity
+
+      - @external_user.activity.each do |activity|
+        .event
+          .label
+            = image_tag "/images/rails.png"
+          .content
+            .date
+              = l activity.created_at, format: :wuxi_admin
+            .summary
+              = t ".activity_action.#{activity.action}"
+            .extra.text
+              => t ".activity_predicate.#{activity.action}"
+              = activity.predicate.inspect

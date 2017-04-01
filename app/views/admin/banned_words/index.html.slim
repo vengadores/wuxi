@@ -1,0 +1,20 @@
+.ui.grid
+  .ui.center.aligned.container
+    h1 Banned words
+
+  .eight.wide.column
+    .ui.divided.list
+      - @banned_words.each do |banned_word|
+        .item
+          .right.floated
+            = link_to "edit",
+                      edit_admin_banned_word_path(banned_word),
+                      class: "ui mini button"
+          = banned_word.decorate.content
+
+  .clearfix
+
+  .ui.center.aligned.container
+    = link_to "add word",
+              new_admin_banned_word_path,
+              class: "fluid ui teal button"
