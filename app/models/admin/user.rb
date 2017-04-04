@@ -24,7 +24,8 @@ class Admin::User
 
   enumerize :role,
             in: [:user, :admin, :superadmin],
-            scope: true
+            scope: true,
+            default: :user
 
   alias_method :to_s, :nickname
 
