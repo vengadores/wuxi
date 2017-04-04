@@ -1,0 +1,18 @@
+.ui.grid
+  .ui.center.aligned.container
+    h1 External Users
+
+  .eight.wide.column
+    = render "by_status_menu"
+
+    .ui.selection.list
+      - @external_users.decorate.each do |external_user|
+        = link_to admin_external_user_path(external_user),
+                  class: "item" do
+          = image_tag external_user.image,
+                      class: "ui avatar image"
+          .content
+            .header = external_user.nickname
+            = external_user.name
+
+    = paginate @external_users

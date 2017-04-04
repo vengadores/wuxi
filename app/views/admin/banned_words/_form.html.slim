@@ -1,0 +1,18 @@
+= form_for [:admin, @banned_word],
+           html: { class: "ui form #{'error' if @banned_word.errors.any?}" } do |f|
+
+  = render "shared/form_errors", f: f
+
+  .field.four.wide
+    = f.label :content
+    = f.text_field :content, required: true
+
+  .actions
+    - if f.object.persisted?
+      = link_to "Destroy",
+                admin_banned_word_path(f.object),
+                class: "ui button red",
+                method: :delete
+
+    = f.submit t("actions.submit"),
+               class: "ui button green"

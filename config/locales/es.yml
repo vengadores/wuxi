@@ -8,3 +8,32 @@ es:
     errors:
       messages:
         taken: ya está tomado
+
+  admin:
+    external_users:
+      show:
+        activity_action:
+          blacklist_user_banned_word_usage: marcó este usuario como blacklist
+          external_user_status_update: actualizó el estado de este usuario
+        activity_predicate:
+          blacklist_user_banned_word_usage: because of banned words usage
+          external_user_status_update: "detalles:"
+
+  date:
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+  time:
+    formats:
+      wuxi_admin: "%H:%M - %d de %B, %Y"

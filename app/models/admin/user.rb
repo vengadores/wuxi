@@ -1,5 +1,7 @@
 class Admin::User
   include Mongoid::Document
+  include Mongoid::Timestamps
+  extend Enumerize
 
   devise :trackable,
          :omniauthable, omniauth_providers: [:twitter]
@@ -7,6 +9,7 @@ class Admin::User
   field :nickname
   field :info, type: Hash
   field :credentials, type: Hash
+  field :role, type: String
 
   ## omniauthable
   field :provider
@@ -18,6 +21,10 @@ class Admin::User
   field :last_sign_in_at,    type: Time
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
+
+  enumerize :role,
+            in: [:user, :admin, :superadmin],
+            scope: true
 
   alias_method :to_s, :nickname
 

@@ -1,0 +1,5 @@
+- if f.object.errors.any?
+  .ui.error.message
+    .header Ups!
+    - f.object.errors.full_messages.each do |message|
+      p = message

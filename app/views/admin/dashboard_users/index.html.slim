@@ -1,0 +1,15 @@
+.ui.grid
+  .ui.center.aligned.container
+    h1 Dashboard Users
+
+  .eight.wide.column
+    = render "by_status_menu"
+
+    .ui.selection.list
+      - @admin_users.each do |admin_user|
+        = link_to admin_dashboard_user_path(admin_user),
+                  class: "item" do
+          = image_tag admin_user.info["image"],
+                      class: "ui avatar image"
+          .content
+            .header = admin_user.nickname

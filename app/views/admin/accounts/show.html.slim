@@ -1,9 +1,33 @@
 h4
-  ' Cuenta
   = @account.name
-  = @account.rules.each do |p|
-    =p.kind
-    =p.content
-    =p.allowed
 
-  
+' rules:
+- @account.rules.each do |p|
+  div
+    = p.kind
+    ' :
+    => p.content
+    ' -
+    => p.allowed ? 'permitido' : 'no permitido'
+    = p.case_sensitive ? '(case sensitive)' : ''
+
+div
+  ' searchterm:
+  = @account.searchterm
+
+.ui.secondary.menu
+  - Core::ExternalPost.status.values.each do |status|
+    = link_to status,
+              admin_account_path(@account, posts_status: status),
+              class: "item #{'active' if @posts_status == status}"
+
+- @external_providers.each do |external_provider|
+  .ui.feed
+    h4.ui.header
+      ' provider:
+      = external_provider
+      ' .
+      = external_provider.active? ? 'activo' : 'inactivo'
+
+    - external_provider.latest_posts(@posts_status).each do |external_post|
+      = render external_post

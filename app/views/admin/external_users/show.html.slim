@@ -1,0 +1,47 @@
+.ui.grid
+  .ui.center.aligned.container
+    h1 External User
+
+  .eight.wide.column
+    = render "by_status_menu"
+
+    .ui.cards
+      .card
+        .content
+          .header = @external_user.nickname
+          .meta = @external_user.name
+          .description
+            = pluralize @external_user.posts.count, "post"
+          .description
+            = link_to "open twitter profile",
+                      "https://twitter.com/#{@external_user.screen_name}",
+                      target: "_blank"
+        .extra.content
+          .right.floated.author
+            = image_tag @external_user.image,
+                        class: "ui avatar image"
+        .extra.content
+          = render "status_form"
+
+    .ui.feed
+      h4.ui.header Activity
+
+      - @external_user.activity.decorate.each do |activity|
+        .event
+          .label
+            = image_tag activity.whodunit_user_image
+          .content
+            .date
+              = l activity.created_at, format: :wuxi_admin
+            .summary
+              => activity.whodunit_user_name
+              = t ".activity_action.#{activity.action}"
+            .extra.text
+              => t ".activity_predicate.#{activity.action}"
+              = activity.predicate.inspect
+
+
+    .ui.feed
+      h4.ui.header Latest posts
+      - @external_user.latest_posts.decorate.each do |external_post|
+        = render external_post

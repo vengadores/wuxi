@@ -1,0 +1,5 @@
+.ui.item.menu
+  - Admin::User.role.values.each do |role|
+    = link_to role,
+              admin_dashboard_users_path(role: role),
+              class: "item #{'active' if @role == role}"

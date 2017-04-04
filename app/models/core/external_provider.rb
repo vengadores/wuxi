@@ -1,23 +1,35 @@
 module Core
   class ExternalProvider
     include Mongoid::Document
+    include Mongoid::Timestamps
 
     SUPPORTED_PROVIDERS = {
       twitter: "https://twitter.com"
     }.with_indifferent_access.freeze
     PROVIDERS = SUPPORTED_PROVIDERS.keys.map(&:to_s).freeze
 
-    belongs_to :account
+    field :active, type: Boolean, default: false
     field :provider, type: String
     field :uid, type: String
     field :info, type: Hash
     field :credentials, type: Hash
+
+    index({ active: 1 })
 
     validate :provider_is_unique
     validates :account,
               :provider,
               :uid,
               presence: true
+
+    begin :relationships
+      belongs_to :account,
+                 class_name: "Core::Account"
+      has_many :posts,
+               class_name: "Core::ExternalPost"
+    end
+
+    scope :active, ->{ where(active: true) }
 
     def self.authorize(account_id, auth)
       create(
@@ -41,6 +53,10 @@ module Core
       when "twitter"
         "@" + info["nickname"]
       end
+    end
+
+    def to_s
+      nickname
     end
 
     private

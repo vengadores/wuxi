@@ -14,6 +14,8 @@ module Admin
     end
 
     def show
+      @posts_status = params[:posts_status] || 'new'
+      @external_providers = @account.external_providers.decorate
     end
 
     def create
@@ -44,7 +46,15 @@ module Admin
             .permit(
               :name,
               external_providers_attributes: [:id, :_destroy],
-              rules_attributes: [:id, :kind, :content, :allowed, :_destroy]
+              rules_attributes: [
+                :id,
+                :kind,
+                :content,
+                :allowed,
+                :can_mention,
+                :case_sensitive,
+                :_destroy
+              ]
             )
     end
   end

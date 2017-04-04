@@ -1,0 +1,12 @@
+.event
+  .label
+    = image_tag external_post.external_user.image
+  .content
+    .summary
+      .user
+        => external_post.external_user.nickname_with_link
+        = external_post.external_user.name
+      = external_post.external_link class: "date" do
+        = l external_post.external_created_at, format: :wuxi_admin
+    .extra.text
+      = external_post.to_s
