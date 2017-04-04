@@ -1,5 +1,5 @@
 uri = ENV["REDIS_URL"] || "redis://localhost:6379/0"
-app_name = File.basename(Rails.root.to_s)
+app_name = "wuxi"
 
 Sidekiq.configure_server do |config|
  config.redis = { url: uri, namespace: "#{app_name}_#{Rails.env}" }

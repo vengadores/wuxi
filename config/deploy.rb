@@ -22,19 +22,23 @@ set :deploy_to, '/home/wuxi/wuxi'
 # set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, false
+set :sidekiq_monit_conf_dir, "#{shared_path}/monit_configs"
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+append :linked_files, '.env'
 
 # Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads', 'monit_configs'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
+
+set :bundle_without, %w{development test deployment}.join(' ')             # this is default
 
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip

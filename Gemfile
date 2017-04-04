@@ -78,4 +78,5 @@ group :deployment do
   gem "capistrano"
   gem "capistrano-rbenv"
   gem "capistrano-sidekiq"
+  gem "capistrano-bundler"
 end
