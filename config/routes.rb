@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :admin do
+    resources :dashboard_users
     resources :banned_words
     resources :external_users do
       member do

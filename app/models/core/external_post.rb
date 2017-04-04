@@ -12,13 +12,15 @@ module Core
 
     index({ provider: 1, uid: 1 }, { unique: true })
     index({ status: 1 })
+    index({ external_created_at: 1 })
 
     enumerize :status,
               in: [
                 :new,
                 :analysed,    # analysed by 3rd parties, may not be reposted
                 :will_repost, # scheduled for repost
-                :reposted
+                :reposted,
+                :halted_by_user_throttler
               ],
               default: :new,
               scope: true
@@ -44,6 +46,9 @@ module Core
     scope :latest, -> { order(external_created_at: :desc) }
     scope :for_provider, ->(provider) {
       where(provider: provider)
+    }
+    scope :since, ->(time_ago) {
+      where(:"external_created_at.gte" => time_ago)
     }
 
     private

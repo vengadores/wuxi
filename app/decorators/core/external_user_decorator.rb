@@ -26,5 +26,9 @@ module Core
         subject_type: object.class.name
       ).latest
     end
+
+    def latest_posts
+      object.posts.latest.limit(50)
+    end
   end
 end

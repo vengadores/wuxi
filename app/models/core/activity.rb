@@ -21,6 +21,7 @@ module Core
     enumerize :action,
               in: [
                 :external_user_status_update,
+                :external_user_exceeded_throttle,
                 :blacklist_user_banned_word_usage
               ]
 

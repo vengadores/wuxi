@@ -14,7 +14,12 @@ module Core
     index({ status: 1 })
 
     enumerize :status,
-              in: [:new, :whitelist, :blacklist],
+              in: [
+                :new,
+                :whitelist,
+                :blacklist,
+                :throttled_by_quota # aka 2 many posts
+              ],
               default: :new,
               scope: true
 
@@ -30,10 +35,17 @@ module Core
     validate :uid_is_unique, on: :create
 
     def permit_third_party_analysis?
-      status.whitelist?
+      status.whitelist? && throttler_allow_more?
     end
 
     private
+
+    def throttler_allow_more?
+      ThrottlerService.new(self)
+                      .log_activity!
+                      .update_user_status!
+                      .allow_more?
+    end
 
     def uid_is_unique
       scope = self.class.where(uid: uid, provider: provider)

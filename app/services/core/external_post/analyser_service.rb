@@ -10,17 +10,14 @@ module Core
           perform_sentiment_analysis!
         ]
         @external_post.update!(status: :analysed)
+
         if analysis_answers.all?
-          schedule_reposting!
+          # reposting handled by the speaker
+          @external_post.update!(status: :will_repost)
         end
       end
 
       private
-
-      def schedule_reposting!
-        # reposting handled by the speaker
-        @external_post.update!(status: :will_repost)
-      end
 
       def perform_sentiment_analysis!
         analysers_answers = [

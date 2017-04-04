@@ -12,6 +12,9 @@
   = link_to "External users",
             admin_external_users_path,
             class: "item #{'active' if controller_name == 'external_users'}"
+  = link_to "Dashboard users",
+            admin_dashboard_users_path,
+            class: "item #{'active' if controller_name == 'dashboard_users'}"
   = link_to "Cerrar Sesión",
             destroy_user_session_path,
             class: "item"

@@ -72,3 +72,7 @@ group :staging do
   gem 'rails_12factor'
   gem 'rails_stdout_logging', '~> 0.0.5'
 end
+
+group :deployment do
+  gem "capistrano"
+end

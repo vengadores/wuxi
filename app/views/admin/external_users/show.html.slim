@@ -39,3 +39,9 @@
             .extra.text
               => t ".activity_predicate.#{activity.action}"
               = activity.predicate.inspect
+
+
+    .ui.feed
+      h4.ui.header Latest posts
+      - @external_user.latest_posts.decorate.each do |external_post|
+        = render external_post
