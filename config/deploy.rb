@@ -38,10 +38,12 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
-set :bundle_without, %w{development test deployment}.join(' ')             # this is default
+set :bundle_without, %w{development test deployment}.join(' ')
 
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
+
+set :passenger_restart_with_touch, true
 
 namespace :deploy do
 

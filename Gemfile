@@ -80,4 +80,5 @@ group :deployment do
   gem "capistrano-sidekiq"
   gem "capistrano-bundler"
   gem "capistrano-passenger"
+  gem "capistrano-rails"
 end
