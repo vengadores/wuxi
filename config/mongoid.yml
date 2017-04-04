@@ -142,3 +142,14 @@ staging:
       uri: <%= ENV['MONGODB_URI'] %>
       options:
         connect_timeout: 15
+
+production:
+  clients:
+    default:
+      database: wuxi_production
+      hosts:
+        - localhost:27017
+      options:
+        max_pool_size: 50
+  options:
+    preload_models: true
