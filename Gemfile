@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'dotenv-rails'
 gem 'slim-rails'
 gem 'devise'
 gem 'omniauth-twitter'
@@ -75,4 +76,5 @@ end
 
 group :deployment do
   gem "capistrano"
+  gem "capistrano-rbenv"
 end
