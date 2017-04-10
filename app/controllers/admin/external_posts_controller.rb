@@ -7,7 +7,10 @@ module Admin
         status: :will_repost,
         manually_reposted: true
       )
-      redirect_back
+      redirect_to admin_account_path(
+        params[:account_id],
+        posts_status: :analysed
+      )
     end
 
     def cancel_repost
@@ -17,12 +20,6 @@ module Admin
         status: :analysed,
         manually_reposted: false
       )
-      redirect_back
-    end
-
-    private
-
-    def redirect_back
       redirect_to admin_account_path(
         params[:account_id],
         posts_status: :will_repost
