@@ -7,6 +7,22 @@ module Admin
         status: :will_repost,
         manually_reposted: true
       )
+      redirect_back
+    end
+
+    def cancel_repost
+      scope = Core::ExternalPost.with_status(:will_repost)
+      external_post = scope.find(params[:id])
+      external_post.update!(
+        status: :analysed,
+        manually_reposted: false
+      )
+      redirect_back
+    end
+
+    private
+
+    def redirect_back
       redirect_to admin_account_path(
         params[:account_id],
         posts_status: :will_repost

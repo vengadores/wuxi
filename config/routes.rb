@@ -44,6 +44,7 @@ Rails.application.routes.draw do
                 only: [] do
         member do
           post :repost, as: :repost
+          post :cancel_repost, as: :cancel_repost
         end
       end
       resource :external_provider_registration,

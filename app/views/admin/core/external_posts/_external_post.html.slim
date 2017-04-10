@@ -45,5 +45,9 @@
           = link_to repost_admin_account_external_post_path(external_post, account_id: external_post.external_provider.account.id), class: "like", method: :post, disabled: external_post.manually_reposted? do
             i.icon.retweet
 
+      - if external_post.status.will_repost?
+        = link_to cancel_repost_admin_account_external_post_path(external_post, account_id: external_post.external_provider.account.id), class: "like", method: :post do
+          i.icon.remove.circle
+
       span.show-only-on-hover ·
       span.show-only-on-hover = external_post.language
