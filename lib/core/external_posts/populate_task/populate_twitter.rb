@@ -10,22 +10,32 @@ module Core
 
         def run
           @saved = 0
-          search_results.each do |tweet|
-            puts "analyse tweet #{tweet.id}"
-            if save?(tweet)
-              @saved += 1
-            end
-          end
+          analyse_search_results!
           puts "saved #{@saved} posts for #{@external_provider}"
         end
 
         private
 
+        def analyse_search_results!
+          search_results.each do |tweet|
+            puts "analyse tweet #{tweet.id}"
+            if save?(tweet)
+              @saved += 1
+            end
+            if @saved >= collector_size
+              puts "exceeded collector size #{collector_size}"
+              return
+            end
+          end
+        end
+
         def search_results
           puts "searching #{@external_provider.account.searchterm}"
           twitter_client.search(
             @external_provider.account.searchterm,
-            result_type: "recent"
+            result_type: "recent",
+            count: collector_size,
+            since_id: @external_provider.posts.latest.first.uid
           )
         end
 
@@ -37,6 +47,10 @@ module Core
           ExternalProvider::TwitterClientService.from_external_provider(
             @external_provider
           ).twitter_client
+        end
+
+        def collector_size
+          Rails.application.secrets.collector_size
         end
       end
     end

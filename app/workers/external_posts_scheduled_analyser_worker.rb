@@ -3,6 +3,6 @@ class ExternalPostsScheduledAnalyserWorker
   sidekiq_options retry: false # scheduled
 
   def perform
-    Core::ExternalPost::ScheduledAnalysisService.new.run!
+    Core::ExternalPost::ScheduledAnalysisService.run!
   end
 end

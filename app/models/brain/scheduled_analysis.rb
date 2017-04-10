@@ -22,7 +22,10 @@ module Brain
                 :new,
                 :done
               ],
-              default: :new
+              default: :new,
+              scope: true
+
+    scope :latest, -> { order(id: :desc) }
 
     def subject=(new_subject)
       self.subject_id = new_subject.id

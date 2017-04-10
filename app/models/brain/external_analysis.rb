@@ -15,12 +15,14 @@ module Brain
     validates :subject_id,
               :subject_type,
               :provider,
+              :response,
               presence: true
 
     enumerize :provider,
               in: [
                 :bitext,
-                :meaningcloud
+                :meaningcloud,
+                :sentiment140
               ]
 
     def subject=(new_subject)

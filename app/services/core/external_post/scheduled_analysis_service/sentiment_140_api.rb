@@ -4,32 +4,35 @@ module Core
       class Sentiment140Api
         include HTTParty
         base_uri "http://www.sentiment140.com/api"
-        debug_output
+        debug_output if Rails.env.development?
 
-        def classify_external_posts(language:, external_posts:)
-          data = external_posts.map do |external_post|
-            query = Core::Account::SearchtermService.new(
-              external_post.external_provider.account
-            ).rules_joined
-            {
-              id: external_post.id,
-              text: external_post.raw_hash["text"],
-              query: query
-            }
-          end
+        ALLOWED_LANGUAGES = %w(en es).freeze
+
+        def classify_analyses(data:, language:)
           body = {
             data: data,
-            language: language
+            language: sanitize_language(language)
           }
           self.class.post(
             "/bulkClassifyJson?#{app_id}",
-            body.to_json
+            body: body.to_json
           )
         end
 
         private
 
+        def sanitize_language(lang)
+          unless ALLOWED_LANGUAGES.include?(lang)
+            return "auto"
+          end
+          lang
+        end
+
         def app_id
           client_email = Rails.application.secrets.sentiment140_email
           "appid=#{client_email}"
         end
+      end
+    end
+  end
+end
