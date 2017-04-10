@@ -19,7 +19,7 @@ ol
 
 p Luego de haber verificado que estás autorizando la cuenta correcta:
 
-= link_to omniauth_authorize_path(:user, provider.name),
+= link_to new_admin_account_external_provider_registration_path(provider: provider.name),
           class: "ui button green" do
   i.icon class="#{provider.name}"
   ' autorizar

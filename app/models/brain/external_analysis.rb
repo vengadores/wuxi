@@ -19,7 +19,8 @@ module Brain
 
     enumerize :provider,
               in: [
-                :bitext
+                :bitext,
+                :meaningcloud
               ]
 
     def subject=(new_subject)

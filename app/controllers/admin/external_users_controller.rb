@@ -1,6 +1,11 @@
 module Admin
   class ExternalUsersController < BaseController
-    before_action :find_external_user, only: [:show, :update_status]
+    before_action :find_external_user,
+                  only: [
+                    :show,
+                    :update_status,
+                    :analyse_latest_posts
+                  ]
 
     def index
       @status = params[:status] || 'new'
@@ -13,18 +18,19 @@ module Admin
     end
 
     def update_status
-      # probably service logic?
-      external_user_params = {
-        notes: params[:notes],
-        status: params[:commit]
-      }
-      @external_user.update!(external_user_params)
-      Core::Activity.create!(
-        subject: @external_user,
-        action: :external_user_status_update,
-        whodunit_id: current_user.id,
-        predicate: external_user_params
-      )
+      Core::ExternalUser::StatusUpdaterService.new(
+        params: params,
+        current_user: current_user,
+        external_user: @external_user
+      ).update!
+      redirect_to action: :show, id: @external_user.id
+    end
+
+    def analyse_latest_posts
+      Core::ExternalUser::LatestPostsAnalyserService.new(
+        current_user: current_user,
+        external_user: @external_user
+      ).schedule_analysis!
       redirect_to action: :show, id: @external_user.id
     end
 

@@ -1,3 +1,8 @@
+require 'sidekiq/web'
+require 'sidekiq-scheduler'
+require 'sidekiq-scheduler/web'
+require 'superadmin_constraint'
+
 Rails.application.routes.draw do
   devise_for :users,
              class_name: "Admin::User",
@@ -24,6 +29,7 @@ Rails.application.routes.draw do
     resources :external_users do
       member do
         post :update_status
+        post :analyse_latest_posts
       end
     end
     resources :accounts,
@@ -34,7 +40,12 @@ Rails.application.routes.draw do
           get :authorize, as: :authorize
         end
       end
+      resource :external_provider_registration,
+               only: [:new, :show]
     end
+
+    mount Sidekiq::Web => '/sidekiq', constraints: SuperadminConstraint.new
+
     root "dashboard#index"
   end
 end

@@ -33,7 +33,7 @@ module Speaker
     end
 
     def twitter_client
-      Core::ExternalProvider::TwitterClientService.new(
+      Core::ExternalProvider::TwitterClientService.from_external_provider(
         @external_post.external_provider
       ).twitter_client
     end

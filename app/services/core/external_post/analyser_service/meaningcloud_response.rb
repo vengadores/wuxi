@@ -32,7 +32,7 @@ module Core
           # NONE: without sentiment
           non_allowed_values = ["N", "N+"]
           score_tag = @response["score_tag"]
-          non_allowed_values.include?(score_tag)
+          !non_allowed_values.include?(score_tag)
         end
       end
     end

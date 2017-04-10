@@ -31,27 +31,17 @@ module Core
 
     scope :active, ->{ where(active: true) }
 
-    def self.authorize(account_id, auth)
-      create(
-        uid: auth.uid,
-        info: auth.info,
-        provider: auth.provider,
-        credentials: auth.credentials,
-        account: Account.find(account_id)
-      )
-    end
-
     def external_uri
       case provider
       when "twitter"
-        info["urls"]["Twitter"]
+        SUPPORTED_PROVIDERS[:twitter] + "/" + info["screen_name"]
       end
     end
 
     def nickname
       case provider
       when "twitter"
-        "@" + info["nickname"]
+        "@" + info["screen_name"]
       end
     end
 

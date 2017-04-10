@@ -22,6 +22,7 @@ module Core
               in: [
                 :external_user_status_update,
                 :external_user_exceeded_throttle,
+                :external_user_analysis_latest_posts,
                 :blacklist_user_banned_word_usage
               ]
 

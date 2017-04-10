@@ -16,8 +16,10 @@ module Core
       raw_hash["profile_image_url"]
     end
 
-    def nickname_with_link
-      h.link_to nickname, h.admin_external_user_path(object)
+    def with_link(&block)
+      h.link_to h.admin_external_user_path(object) do
+        yield
+      end
     end
 
     def activity

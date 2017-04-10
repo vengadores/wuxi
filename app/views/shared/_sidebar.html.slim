@@ -15,6 +15,11 @@
   = link_to "Dashboard users",
             admin_dashboard_users_path,
             class: "item #{'active' if controller_name == 'dashboard_users'}"
+  - # TODO pundit
+  - if current_user.role.superadmin?
+    = link_to "Sidekiq",
+              admin_sidekiq_web_path,
+              class: "item"
   = link_to "Cerrar Sesión",
             destroy_user_session_path,
             class: "item"

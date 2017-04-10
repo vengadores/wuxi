@@ -21,6 +21,13 @@
             = image_tag @external_user.image,
                         class: "ui avatar image"
         .extra.content
+          .ui.one.buttons
+            = link_to "analyse latest posts",
+                      analyse_latest_posts_admin_external_user_path(@external_user),
+                      method: :post,
+                      class: "ui basic button yellow"
+
+        .extra.content
           = render "status_form"
 
     .ui.feed
@@ -38,7 +45,7 @@
               = t ".activity_action.#{activity.action}"
             .extra.text
               => t ".activity_predicate.#{activity.action}"
-              = activity.predicate.inspect
+              = activity.predicate.inspect if activity.predicate
 
 
     .ui.feed

@@ -1,2 +1,9 @@
 ---
 :concurrency: 1
+:schedule:
+  external_posts_collector_worker:
+    every: 15m
+    class: ExternalPostsCollectorWorker
+  external_posts_speaker_worker:
+    every: 3m
+    class: ExternalPostsSpeakerWorker

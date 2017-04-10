@@ -1,11 +1,6 @@
 module Admin
   module Users
     class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-      include AccountExternalProviders
-
-      before_action :authorize_account_provider!,
-                    if: :adding_external_provider?
-
       def twitter
         user = User.from_omniauth(request.env["omniauth.auth"])
         sign_in_and_redirect user, event: :authentication

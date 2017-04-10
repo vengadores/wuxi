@@ -2,13 +2,15 @@ module Core
   class ExternalUser
     class ThrottlerService
       MINUTES_WINDOW = 5
+      MAX_PER_WINDOW = 3
+
       def initialize(external_user)
         @external_user = external_user
       end
 
       def allow_more?
         time_ago = MINUTES_WINDOW.minutes.ago
-        exceeded = @external_user.posts.since(time_ago).count >= 3
+        exceeded = @external_user.posts.since(time_ago).count >= MAX_PER_WINDOW
         if exceeded
           create_activity! if @log_activity
           set_user_as_throttled! if @update_user_status
@@ -21,7 +23,7 @@ module Core
         self
       end
 
-      def update_user_status
+      def update_user_status!
         @update_user_status = true
         self
       end

@@ -31,7 +31,7 @@ module Core
         end
 
         def twitter_client
-          ExternalProvider::TwitterClientService.new(
+          ExternalProvider::TwitterClientService.from_external_provider(
             @external_provider
           ).twitter_client
         end

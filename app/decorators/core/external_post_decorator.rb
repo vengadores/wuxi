@@ -12,5 +12,16 @@ module Core
         yield block
       end
     end
+
+    def may_include_analysis?
+      !object.status.new? && !object.status.halted_by_user_throttler?
+    end
+
+    def external_analysis
+      Brain::ExternalAnalysis.where(
+        subject_id: object.id,
+        subject_type: object.class.name
+      )
+    end
   end
 end
