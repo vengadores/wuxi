@@ -1,7 +1,7 @@
 module Core
   class ExternalUser
     class ThrottlerService
-      MINUTES_WINDOW = 5
+      MINUTES_WINDOW = 10
       MAX_PER_WINDOW = 3
 
       def initialize(external_user:)
