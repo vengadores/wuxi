@@ -29,5 +29,8 @@ div
       ' .
       = external_provider.active? ? 'activo' : 'inactivo'
 
-    - external_provider.latest_posts(@posts_status).each do |external_post|
+    - latest_posts = external_provider.latest_posts(@posts_status)
+    - latest_posts.decorate.each do |external_post|
       = render external_post
+
+    = paginate latest_posts

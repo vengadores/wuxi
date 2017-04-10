@@ -17,8 +17,8 @@ module Core
       !object.status.new? && !object.status.halted_by_user_throttler?
     end
 
-    def external_analysis
-      Brain::ExternalAnalysis.where(
+    def external_analyses
+      @external_analyses ||= Brain::ExternalAnalysis.where(
         subject_id: object.id,
         subject_type: object.class.name
       )

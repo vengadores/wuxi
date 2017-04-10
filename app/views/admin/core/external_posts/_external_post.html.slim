@@ -19,7 +19,7 @@
       - if external_post.may_include_analysis?
         a.like
           i.icon.diamond
-          = external_post.external_analysis.count
+          = external_post.external_analyses.decorate.map(&:score).join(" | ")
 
       span.like ·
       span.like class="external-user-#{external_post.external_user.id}-status"
