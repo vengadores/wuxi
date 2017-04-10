@@ -48,6 +48,8 @@ module Core
       private
 
       def parse_external_post_response(response)
+        ##
+        # may be better outside?
         analysis = Brain::ScheduledAnalysis.find response["id"]
         external_post = analysis.subject
         analysis.update!(status: :done)
@@ -57,6 +59,9 @@ module Core
           provider: :sentiment140,
           response: sanitize_post_response(response)
         )
+        if response["polarity"] == 4 # AKA P+
+          external_post.update!(status: :will_repost)
+        end
       end
 
       def sanitize_post_response(response)
