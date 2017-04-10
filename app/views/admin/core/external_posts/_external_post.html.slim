@@ -17,7 +17,7 @@
       span.like = external_post.status_text
 
       - if external_post.may_include_analysis?
-        a.like
+        a
           i.icon.diamond
           = external_post.external_analyses.decorate.map(&:score).join(" | ")
 
@@ -40,3 +40,7 @@
                   method: :post,
                   remote: true do
           i.icon.angle.up
+
+        - if external_post.status.analysed? || external_post.manually_reposted?
+          = link_to repost_admin_account_external_post_path(external_post, account_id: external_post.external_provider.account.id), class: "like", method: :post, disabled: external_post.manually_reposted? do
+            i.icon.retweet

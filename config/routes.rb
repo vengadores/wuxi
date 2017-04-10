@@ -40,6 +40,12 @@ Rails.application.routes.draw do
           get :authorize, as: :authorize
         end
       end
+      resources :external_posts,
+                only: [] do
+        member do
+          post :repost, as: :repost
+        end
+      end
       resource :external_provider_registration,
                only: [:new, :show]
     end

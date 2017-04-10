@@ -9,6 +9,7 @@ module Core
     field :raw_hash, type: Hash
     field :external_created_at, type: Time
     field :status, type: String
+    field :manually_reposted, type: Boolean, default: false
 
     index({ provider: 1, uid: 1 }, { unique: true })
     index({ status: 1 })
