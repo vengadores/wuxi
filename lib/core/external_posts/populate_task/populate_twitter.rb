@@ -31,11 +31,12 @@ module Core
 
         def search_results
           puts "searching #{@external_provider.account.searchterm}"
+          last_post = @external_provider.posts.latest.first
           twitter_client.search(
             @external_provider.account.searchterm,
             result_type: "recent",
             count: collector_size,
-            since_id: @external_provider.posts.latest.first.uid
+            since_id: last_post.try(:uid) # may be empty
           )
         end
 
