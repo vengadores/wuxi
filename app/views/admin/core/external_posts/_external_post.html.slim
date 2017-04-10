@@ -20,3 +20,22 @@
         a.like
           i.icon.diamond
           = external_post.external_analysis.count
+
+      span.like ·
+      span.like class="external-user-#{external_post.external_user.id}-status"
+        - unless external_post.external_user.status.new?
+          = external_post.external_user.status
+
+      = link_to update_status_admin_external_user_path(external_post.external_user,
+                                                         commit: :blacklist),
+                class: "like",
+                method: :post,
+                remote: true do
+          i.icon.angle.down
+
+      = link_to update_status_admin_external_user_path(external_post.external_user,
+                                                         commit: :whitelist),
+                class: "like",
+                method: :post,
+                remote: true do
+        i.icon.angle.up

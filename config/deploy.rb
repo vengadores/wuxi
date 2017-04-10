@@ -46,14 +46,11 @@ set :rbenv_ruby, File.read('.ruby-version').strip
 set :passenger_restart_with_touch, true
 
 namespace :deploy do
-
   after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+    on roles(:db) do
+      within release_path do
+        execute :rake, 'db:mongoid:create_indexes'
+      end
     end
   end
-
 end

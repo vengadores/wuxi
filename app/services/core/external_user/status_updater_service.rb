@@ -9,9 +9,12 @@ module Core
 
       def update!
         external_user_params = {
-          notes: @params[:notes],
           status: @params[:commit]
         }
+        if @params[:notes].present?
+          external_user_params[:notes] = @params[:notes]
+        end
+
         @external_user.update!(external_user_params)
         Core::Activity.create!(
           subject: @external_user,
