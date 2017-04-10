@@ -56,12 +56,10 @@ module Core
 
     def analyse!
       # unfortunately APIs have limited rates
-      if external_user.status.whitelist?
-        if external_user.throttler_allow_more?
-          ::ExternalPostAnalyserWorker.perform_async(id.to_s)
-        else
-          update!(status: :halted_by_user_throttler)
-        end
+      if external_user.throttler_allow_more?
+        ::ExternalPostAnalyserWorker.perform_async(id.to_s)
+      else
+        update!(status: :halted_by_user_throttler)
       end
     end
 

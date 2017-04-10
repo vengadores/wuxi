@@ -14,8 +14,8 @@ module Core
         def ok_for_reposting?
           if !ok?
             # meaningcloud response was not successful
-            # therefore we do not rely on it
-            return true
+            # therefore we can not guarantee it
+            return false
           end
           score_tag_allowed_for_reposting?
         end
