@@ -16,7 +16,7 @@
             admin_dashboard_users_path,
             class: "item #{'active' if controller_name == 'dashboard_users'}"
   - # TODO pundit
-  - if current_user.role.superadmin?
+  - if current_user && current_user.role.superadmin?
     = link_to "Sidekiq",
               admin_sidekiq_web_path,
               class: "item"

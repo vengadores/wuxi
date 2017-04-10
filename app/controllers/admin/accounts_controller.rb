@@ -45,7 +45,12 @@ module Admin
       params.require(:account)
             .permit(
               :name,
-              external_providers_attributes: [:id, :_destroy],
+              external_providers_attributes: [
+                :id,
+                :active,
+                :repost,
+                :_destroy
+              ],
               rules_attributes: [
                 :id,
                 :kind,

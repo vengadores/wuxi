@@ -18,6 +18,7 @@ module Speaker
     end
 
     def speak!
+      return if !@external_post.external_provider.repost
       retweet!
       @external_post.update!(status: :reposted)
     end

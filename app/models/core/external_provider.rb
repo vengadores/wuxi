@@ -9,6 +9,7 @@ module Core
     PROVIDERS = SUPPORTED_PROVIDERS.keys.map(&:to_s).freeze
 
     field :active, type: Boolean, default: false
+    field :repost, type: Boolean, default: false
     field :provider, type: String
     field :uid, type: String
     field :info, type: Hash

@@ -3,6 +3,18 @@
             target: "_blank" do
     = f.object.nickname
     i.icon class="#{f.object.provider}"
+
+  .fields
+    .field.six.wide
+      = f.label :active
+      br
+      = f.check_box :active
+
+    .field.six.wide
+      = f.label :repost
+      br
+      = f.check_box :repost
+
   = f.link_to_remove class: "ui-popup",
                      data: { content: "eliminar" } do
     i.fitted.remove.red.icon
