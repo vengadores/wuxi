@@ -24,6 +24,7 @@ module Core
       private
 
       def schedule_sentiment140_analysis!
+        # analysis is handled in BG
         Brain::ScheduledAnalysis.create!(
           subject: @external_post,
           lang: @external_post.raw_hash["lang"]

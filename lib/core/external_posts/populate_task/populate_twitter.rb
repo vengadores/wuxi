@@ -11,7 +11,10 @@ module Core
         def run
           @saved = 0
           search_results.each do |tweet|
-            @saved += 1 if save?(tweet)
+            puts "analyse tweet #{tweet.id}"
+            if save?(tweet)
+              @saved += 1
+            end
           end
           puts "saved #{@saved} posts for #{@external_provider}"
         end

@@ -26,16 +26,17 @@
         - unless external_post.external_user.status.new?
           = external_post.external_user.status
 
-      = link_to update_status_admin_external_user_path(external_post.external_user,
-                                                         commit: :blacklist),
-                class: "like",
-                method: :post,
-                remote: true do
-          i.icon.angle.down
+      - unless external_post.external_user.status.throttled_by_quota?
+        = link_to update_status_admin_external_user_path(external_post.external_user,
+                                                           commit: :blacklist),
+                  class: "like",
+                  method: :post,
+                  remote: true do
+            i.icon.angle.down
 
-      = link_to update_status_admin_external_user_path(external_post.external_user,
-                                                         commit: :whitelist),
-                class: "like",
-                method: :post,
-                remote: true do
-        i.icon.angle.up
+        = link_to update_status_admin_external_user_path(external_post.external_user,
+                                                           commit: :whitelist),
+                  class: "like",
+                  method: :post,
+                  remote: true do
+          i.icon.angle.up

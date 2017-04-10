@@ -1,6 +1,6 @@
 module Core
   class ExternalPost
-    class AnalyserService
+    class SentimentAnalyserService
       class MeaningcloudApi
         include HTTParty
         base_uri "https://api.meaningcloud.com"

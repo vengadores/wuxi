@@ -7,3 +7,6 @@
   external_posts_speaker_worker:
     every: 3m
     class: ExternalPostsSpeakerWorker
+  external_posts_scheduled_analyser_worker:
+    every: 15m
+    class: ExternalPostsScheduledAnalyserWorker

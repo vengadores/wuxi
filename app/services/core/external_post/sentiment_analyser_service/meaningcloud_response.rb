@@ -1,6 +1,6 @@
 module Core
   class ExternalPost
-    class AnalyserService
+    class SentimentAnalyserService
       class MeaningcloudResponse
         def initialize(response)
           @response = response

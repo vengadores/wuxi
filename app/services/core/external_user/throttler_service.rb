@@ -4,7 +4,7 @@ module Core
       MINUTES_WINDOW = 5
       MAX_PER_WINDOW = 3
 
-      def initialize(external_user)
+      def initialize(external_user:)
         @external_user = external_user
       end
 
@@ -15,7 +15,7 @@ module Core
           create_activity! if @log_activity
           set_user_as_throttled! if @update_user_status
         end
-        exceeded
+        !exceeded
       end
 
       def log_activity!

@@ -35,7 +35,7 @@ module Core
     validate :uid_is_unique, on: :create
 
     def throttler_allow_more?
-      ThrottlerService.new(self)
+      ThrottlerService.new(external_user: self)
                       .log_activity!
                       .update_user_status!
                       .allow_more?

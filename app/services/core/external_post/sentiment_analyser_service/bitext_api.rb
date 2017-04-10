@@ -1,6 +1,6 @@
 module Core
   class ExternalPost
-    class AnalyserService
+    class SentimentAnalyserService
       class BitextApi
         include HTTParty
         base_uri "https://svc02.pre.api.bitext.com"
