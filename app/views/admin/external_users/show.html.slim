@@ -27,28 +27,18 @@
               = link_to "analyse latest posts",
                         analyse_latest_posts_admin_external_user_path(@external_user),
                         method: :post,
-                        class: "ui basic button yellow"
+                        class: "ui basic button yellow",
+                        remote: true,
+                        data: { disable_with: "enviando.." }
 
         .extra.content
           = render "status_form"
 
-    .ui.feed
+    .ui.feed.external-user-activities
       h4.ui.header Activity
 
       - @external_user.activity.decorate.each do |activity|
-        .event
-          .label
-            = image_tag activity.whodunit_user_image
-          .content
-            .date
-              = l activity.created_at, format: :wuxi_admin
-            .summary
-              => activity.whodunit_user_name
-              = t ".activity_action.#{activity.action}"
-            .extra.text
-              => t ".activity_predicate.#{activity.action}"
-              = activity.predicate.inspect if activity.predicate
-
+        = render "activity", activity: activity
 
     .ui.feed
       h4.ui.header Latest posts

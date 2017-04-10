@@ -14,7 +14,7 @@ module Core
         analysers_answers = [
           analyse_with_bitext!
         ]
-        if @external_post.external_user.whitelist?
+        if @external_post.external_user.status.whitelist?
           # premium analysis?
           analysers_answers << analyse_with_meaningcloud!
         end

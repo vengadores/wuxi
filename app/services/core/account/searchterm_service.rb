@@ -5,9 +5,12 @@ module Core
         @account = account
       end
 
+      def rules_joined
+        rules_contents.join(" OR ")
+      end
+
       def searchterm
-        searchterms = rules_contents.join(" OR ")
-        "#{searchterms} -RT"
+        "#{rules_joined} -RT"
       end
 
       private

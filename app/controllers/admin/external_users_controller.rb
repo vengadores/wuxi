@@ -36,7 +36,12 @@ module Admin
         current_user: current_user,
         external_user: @external_user
       ).schedule_analysis!
-      redirect_to action: :show, id: @external_user.id
+      respond_to do |format|
+        format.js
+        format.html {
+          redirect_to action: :show, id: @external_user.id
+        }
+      end
     end
 
     private

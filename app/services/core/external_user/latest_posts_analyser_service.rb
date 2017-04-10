@@ -10,6 +10,10 @@ module Core
 
       def schedule_analysis!
         external_posts.each do |external_post|
+          #
+          # update status so it doesnt get re-queued
+          # in case user re-schedules
+          external_post.update!(status: :analysed)
           ::ExternalPostAnalyserWorker.perform_async(
             external_post.id.to_s
           )

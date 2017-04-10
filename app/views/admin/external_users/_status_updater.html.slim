@@ -1,3 +1,4 @@
 = submit_tag status,
              class: "ui basic button #{color} #{'active' if @external_user.status == status}",
-             value: status
+             value: status,
+             data: { disable_with: "enviando.." }

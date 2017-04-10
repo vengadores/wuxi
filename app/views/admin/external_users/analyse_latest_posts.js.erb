@@ -1,0 +1,4 @@
+(function(){
+  var $activity = "<%= j render('activity', activity: @external_user.decorate.activity.first.decorate) %>";
+  $(".external-user-activities .header").after($activity);
+})();
