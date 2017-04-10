@@ -30,7 +30,7 @@ module Core
 
         def app_id
           client_email = Rails.application.secrets.sentiment140_email
-          "appid=#{client_email}"
+          "appid=#{URI.encode_www_form_component(client_email)}"
         end
       end
     end
