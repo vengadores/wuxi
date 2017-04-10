@@ -56,6 +56,8 @@ module Core
     private
 
     def analyse!
+      # do nothing if user in blacklist
+      return if external_user.status.blacklist?
       # unfortunately APIs have limited rates
       if external_user.throttler_allow_more?
         ::ExternalPostAnalyserWorker.perform_async(id.to_s)
