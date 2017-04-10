@@ -45,6 +45,10 @@ set :rbenv_ruby, File.read('.ruby-version').strip
 
 set :passenger_restart_with_touch, true
 
+set :default_env, {
+  'RAILS_ENV' => fetch(:stage)
+}
+
 namespace :deploy do
   after :restart, :clear_cache do
     on roles(:db) do
