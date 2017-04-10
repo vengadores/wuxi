@@ -1,4 +1,4 @@
-.event
+.event.external-post-event
   .label
     = external_post.external_user.with_link do
       = image_tag external_post.external_user.image
@@ -44,3 +44,6 @@
         - if external_post.status.analysed? || external_post.manually_reposted?
           = link_to repost_admin_account_external_post_path(external_post, account_id: external_post.external_provider.account.id), class: "like", method: :post, disabled: external_post.manually_reposted? do
             i.icon.retweet
+
+      span.show-only-on-hover ·
+      span.show-only-on-hover = external_post.language

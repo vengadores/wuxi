@@ -6,6 +6,10 @@ module Core
       object.raw_hash["text"]
     end
 
+    def language
+      object.raw_hash["lang"]
+    end
+
     def external_link(options = {}, &block)
       uri = "https://twitter.com/#{external_user.screen_name}/status/#{uid}"
       h.link_to uri, options.merge(target: "_blank") do
