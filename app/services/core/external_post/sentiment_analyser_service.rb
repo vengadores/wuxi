@@ -38,7 +38,7 @@ module Core
           our_language: @external_post.raw_hash["lang"]
         )
         unless post_response.response.is_a?(Net::HTTPServiceUnavailable)
-          fail "working? TODO"
+          fail "working? TODO #{post_response.body}"
         end
         true # yeah
       end
