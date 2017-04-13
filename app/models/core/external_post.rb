@@ -51,7 +51,7 @@ module Core
       where(provider: provider)
     }
     scope :since, ->(time_ago) {
-      where(:"external_created_at.gte" => time_ago)
+      where(:external_created_at.gte => time_ago)
     }
 
     private
