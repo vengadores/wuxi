@@ -18,7 +18,8 @@ module Core
                 :new,
                 :whitelist,
                 :blacklist,
-                :throttled_by_quota # aka 2 many posts
+                :throttled_by_quota, # aka 2 many posts
+                :blocked_us
               ],
               default: :new,
               scope: true

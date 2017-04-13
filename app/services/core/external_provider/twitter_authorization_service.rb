@@ -25,11 +25,10 @@ module Core
       def build_external_provider
         external_provider = ExternalProvider.where(
           provider: :twitter,
-          uid: @twitter_user.id
-        ).first_or_initialize do |external_provider|
-          external_provider.account_id = @account_id
-          external_provider.info = @twitter_user.to_hash
-        end
+          uid: @twitter_user.id,
+          account_id: @account_id
+        ).first_or_initialize
+        external_provider.info = @twitter_user.to_hash
         external_provider.credentials = {
           token: @access_token.token,
           secret: @access_token.secret

@@ -4,11 +4,16 @@ module Speaker
       THROTTLE = 1
 
       def speak!
-        scope = Core::ExternalPost.latest
-                                  .for_provider(:twitter)
-                                  .with_status(:will_repost)
-        scope.limit(THROTTLE).each do |external_post|
-          new(external_post).speak!
+        Core::ExternalProvider.active
+                              .repost
+                              .with_provider(:twitter)
+                              .each do |external_provider|
+            scope = external_provider.posts
+                                     .latest
+                                     .with_status(:will_repost)
+            scope.limit(THROTTLE).each do |external_post|
+              new(external_post).speak!
+            end
         end
       end
     end
@@ -18,7 +23,6 @@ module Speaker
     end
 
     def speak!
-      return if !@external_post.external_provider.repost
       retweet!
       @external_post.update!(status: :reposted)
     end
@@ -31,6 +35,11 @@ module Speaker
           @external_post.raw_hash.with_indifferent_access
         )
       )
+    rescue Exception => e
+      TwitterSpeakingException.new(
+        exception: e,
+        external_post: @external_post
+      ).handle!
     end
 
     def twitter_client

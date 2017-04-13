@@ -21,6 +21,7 @@ module Core
                 :analysed,    # analysed by 3rd parties, may not be reposted
                 :will_repost, # scheduled for repost
                 :reposted,
+                :error_reposting,
                 :halted_by_user_throttler
               ],
               default: :new,

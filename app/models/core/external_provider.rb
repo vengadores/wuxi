@@ -1,5 +1,6 @@
 module Core
   class ExternalProvider
+    extend Enumerize
     include Mongoid::Document
     include Mongoid::Timestamps
 
@@ -23,6 +24,10 @@ module Core
               :uid,
               presence: true
 
+    enumerize :provider,
+              in: [:twitter],
+              scope: true
+
     begin :relationships
       belongs_to :account,
                  class_name: "Core::Account"
@@ -31,6 +36,7 @@ module Core
     end
 
     scope :active, ->{ where(active: true) }
+    scope :repost, ->{ where(repost: true) }
 
     def external_uri
       case provider
